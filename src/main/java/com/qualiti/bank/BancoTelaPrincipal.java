@@ -29,7 +29,8 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		context = new SpringApplicationBuilder(BancoTelaPrincipal.class)
+		context = 
+				new SpringApplicationBuilder(BancoTelaPrincipal.class)
 				.headless(false).run(args);
 		
 	}
@@ -110,7 +111,8 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BancoTelaPrincipal window = new BancoTelaPrincipal();
+					BancoTelaPrincipal window =
+							context.getBean(BancoTelaPrincipal.class);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -1,6 +1,14 @@
 package com.qualiti.bank.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "endereco")
 public class Endereco extends BancoEntity<String> {
+	
+	@Id
 	private String cpf;
 	private String logradouro;
 	private String numero;

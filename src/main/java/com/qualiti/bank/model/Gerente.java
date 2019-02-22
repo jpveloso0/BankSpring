@@ -1,5 +1,10 @@
 package com.qualiti.bank.model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "GERENTE")
 public class Gerente extends Pessoa {
 	
 	private String matricula;

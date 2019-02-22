@@ -2,6 +2,11 @@ package com.qualiti.bank.model;
 
 import java.util.Arrays;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "CLIENTE")
 public class Cliente extends Pessoa implements Comparable<Cliente> {
 	
 	public Cliente() {
