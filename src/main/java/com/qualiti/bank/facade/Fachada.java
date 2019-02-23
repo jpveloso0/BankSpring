@@ -85,4 +85,9 @@ public class Fachada implements IFachada {
 		negocioContas.transferir(numeroFonte, numeroDestino, valor);
 	}
 
+	@Override
+	public String nomesClienteOrdemAlfabetica() throws BancoException {
+		return negocioClientes.nomesClienteOrdemAlfabetica();
+	}
+
 }

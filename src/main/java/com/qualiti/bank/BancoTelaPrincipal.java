@@ -15,6 +15,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.qualiti.bank.gui.ClienteCadastrarPanel;
+import com.qualiti.bank.gui.ClientesRelatorioPanel;
 import com.qualiti.bank.gui.ContaCadastrarPanel;
 import com.qualiti.bank.gui.TransacoesMovimentacaoPanel;
 
@@ -33,10 +34,23 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 				new SpringApplicationBuilder(BancoTelaPrincipal.class)
 				.headless(false).run(args);
 		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					BancoTelaPrincipal window =
+							context.getBean(BancoTelaPrincipal.class);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public BancoTelaPrincipal() {
 		initialize();
@@ -61,13 +75,25 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 		mntmCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ClienteCadastrarPanel cadastrarPanel = new ClienteCadastrarPanel();
+				ClienteCadastrarPanel cadastrarPanel = context.getBean(ClienteCadastrarPanel.class);
 				frame.setContentPane(cadastrarPanel);
 				frame.revalidate();
 				
 			}
 		});									
 		mnClientes.add(mntmCadastrar);
+		
+		JMenuItem mntmRelatrio = new JMenuItem("Relatório");
+		mntmRelatrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ClientesRelatorioPanel gerarRelatorio = context.getBean(ClientesRelatorioPanel.class);
+				frame.setContentPane(gerarRelatorio);
+				frame.revalidate();
+				
+			}
+		});
+		mnClientes.add(mntmRelatrio);
 		
 		JMenu mnContas = new JMenu("Contas");
 		menuBar.add(mnContas);
@@ -76,7 +102,7 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 		mntmCadastrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ContaCadastrarPanel contaPanel = new ContaCadastrarPanel();
+				ContaCadastrarPanel contaPanel = context.getBean(ContaCadastrarPanel.class);
 				frame.setContentPane(contaPanel);
 				frame.revalidate();
 					
@@ -91,7 +117,7 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 		mntmMovimentaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				TransacoesMovimentacaoPanel transacaoMovimentacaoPanel = new TransacoesMovimentacaoPanel();
+				TransacoesMovimentacaoPanel transacaoMovimentacaoPanel = context.getBean(TransacoesMovimentacaoPanel.class);
 				frame.setContentPane(transacaoMovimentacaoPanel);
 				frame.revalidate();
 				
@@ -107,18 +133,6 @@ public class BancoTelaPrincipal implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BancoTelaPrincipal window =
-							context.getBean(BancoTelaPrincipal.class);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 		
 	}
 }

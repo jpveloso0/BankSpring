@@ -1,13 +1,19 @@
 package com.qualiti.bank.model;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "CLIENTE")
 public class Cliente extends Pessoa implements Comparable<Cliente> {
+	
+	@OneToMany (fetch = FetchType.LAZY, mappedBy="cliente")
+	private Set<Conta> contas;
 	
 	public Cliente() {
 		super();
@@ -50,6 +56,14 @@ public class Cliente extends Pessoa implements Comparable<Cliente> {
 	public String getChave() {
 		
 		return getCpf();
+	}
+
+	public Set<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(Set<Conta> contas) {
+		this.contas = contas;
 	}
 	
 }

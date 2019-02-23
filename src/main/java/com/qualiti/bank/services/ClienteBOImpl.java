@@ -96,4 +96,9 @@ public class ClienteBOImpl implements ClienteBO {
 		return null;
 	}
 
+	@Override
+	public String nomesClienteOrdemAlfabetica() throws BancoException {
+		return repositorio.nomesClienteOrdemAlfabetica();
+	}
+
 }

@@ -2,6 +2,7 @@ package com.qualiti.bank.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -32,7 +33,7 @@ public abstract class Pessoa extends BancoEntity<String> {
 	@Column(name = "dataNascimento")
 	private LocalDate dataNascimento;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Endereco endereco;
 	

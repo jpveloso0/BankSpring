@@ -22,6 +22,8 @@ public interface IFachada {
 	void removerCliente(String cpf) throws BancoException;
 	Cliente procurar(String cpf) throws BancoException;
 	
+	String nomesClienteOrdemAlfabetica() throws BancoException;
+	
 	
 
 }

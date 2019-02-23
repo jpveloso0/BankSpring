@@ -9,5 +9,7 @@ public interface ClienteBO {
 	void atualizar(Cliente cliente) throws BancoException;
 	void remover(String cpf) throws BancoException;
 	Cliente procurar(String cpf) throws BancoException;
+	
+	String nomesClienteOrdemAlfabetica() throws BancoException;
 
 }
